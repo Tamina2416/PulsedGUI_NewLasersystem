@@ -57,7 +57,6 @@
       <property name="font">
        <font>
         <pointsize>40</pointsize>
-        <weight>50</weight>
         <italic>false</italic>
         <bold>false</bold>
         <underline>true</underline>
@@ -90,8 +89,8 @@
         <rect>
          <x>10</x>
          <y>0</y>
-         <width>175</width>
-         <height>161</height>
+         <width>182</width>
+         <height>200</height>
         </rect>
        </property>
        <layout class="QVBoxLayout" name="verticalLayout_2">
@@ -240,7 +239,7 @@
       <widget class="QPushButton" name="general_button_selectPath">
        <property name="geometry">
         <rect>
-         <x>120</x>
+         <x>150</x>
          <y>10</y>
          <width>113</width>
          <height>31</height>
@@ -543,7 +542,6 @@
       <property name="font">
        <font>
         <pointsize>25</pointsize>
-        <weight>50</weight>
         <italic>false</italic>
         <bold>false</bold>
         <underline>true</underline>
@@ -751,7 +749,6 @@
        </property>
        <property name="font">
         <font>
-         <weight>75</weight>
          <bold>true</bold>
          <underline>true</underline>
         </font>
@@ -965,7 +962,6 @@
        <property name="font">
         <font>
          <pointsize>16</pointsize>
-         <weight>50</weight>
          <bold>false</bold>
          <strikeout>false</strikeout>
         </font>
@@ -1329,7 +1325,6 @@
        </property>
        <property name="font">
         <font>
-         <weight>75</weight>
          <bold>true</bold>
          <underline>true</underline>
         </font>
@@ -1434,7 +1429,7 @@
          <x>10</x>
          <y>40</y>
          <width>192</width>
-         <height>94</height>
+         <height>95</height>
         </rect>
        </property>
        <layout class="QFormLayout" name="formLayout">
@@ -1643,7 +1638,7 @@
         <rect>
          <x>10</x>
          <y>10</y>
-         <width>141</width>
+         <width>155</width>
          <height>109</height>
         </rect>
        </property>
@@ -1705,7 +1700,7 @@
          <x>10</x>
          <y>40</y>
          <width>191</width>
-         <height>94</height>
+         <height>95</height>
         </rect>
        </property>
        <layout class="QFormLayout" name="formLayout_2">
@@ -1994,7 +1989,6 @@
        </property>
        <property name="font">
         <font>
-         <weight>75</weight>
          <bold>true</bold>
          <underline>true</underline>
         </font>
@@ -2277,7 +2271,6 @@
        <property name="font">
         <font>
          <pointsize>16</pointsize>
-         <weight>50</weight>
          <bold>false</bold>
          <strikeout>false</strikeout>
         </font>
@@ -2483,7 +2476,6 @@
        <property name="font">
         <font>
          <pointsize>16</pointsize>
-         <weight>50</weight>
          <bold>false</bold>
          <strikeout>false</strikeout>
         </font>
@@ -2593,7 +2585,7 @@
         <double>0.100000000000000</double>
        </property>
        <property name="value">
-        <double>1372.753400000000000</double>
+        <double>1372.750000000000000</double>
        </property>
       </widget>
       <widget class="QLabel" name="label_27">
@@ -2730,7 +2722,6 @@
        </property>
        <property name="font">
         <font>
-         <weight>75</weight>
          <bold>true</bold>
          <underline>true</underline>
         </font>
@@ -2825,16 +2816,16 @@
         <string/>
        </property>
        <property name="minimum">
-        <double>12.000000000000000</double>
+        <double>8.000000000000000</double>
        </property>
        <property name="maximum">
-        <double>40.000000000000000</double>
+        <double>50.000000000000000</double>
        </property>
        <property name="singleStep">
         <double>0.100000000000000</double>
        </property>
        <property name="value">
-        <double>12.000000000000000</double>
+        <double>20.000000000000000</double>
        </property>
       </widget>
       <widget class="QDoubleSpinBox" name="dfb_lineEdit_scanEndTemp">
@@ -2859,10 +2850,10 @@
         <string/>
        </property>
        <property name="minimum">
-        <double>12.000000000000000</double>
+        <double>10.000000000000000</double>
        </property>
        <property name="maximum">
-        <double>40.000000000000000</double>
+        <double>55.000000000000000</double>
        </property>
        <property name="singleStep">
         <double>0.100000000000000</double>
@@ -2962,7 +2953,7 @@
         <item>
          <widget class="QLineEdit" name="dfb_lineEdit_ip">
           <property name="text">
-           <string>192.168.12.38</string>
+           <string>192.168.12.62</string>
           </property>
          </widget>
         </item>
@@ -3176,16 +3167,16 @@
         <number>6</number>
        </property>
        <property name="minimum">
-        <double>1027.000000000000000</double>
+        <double>1029.000000000000000</double>
        </property>
        <property name="maximum">
-        <double>1032.000000000000000</double>
+        <double>1033.000000000000000</double>
        </property>
        <property name="singleStep">
         <double>0.010000000000000</double>
        </property>
        <property name="value">
-        <double>1029.000000000000000</double>
+        <double>1030.000000000000000</double>
        </property>
       </widget>
       <widget class="QDoubleSpinBox" name="dfb_lineEdit_kp">
@@ -3395,7 +3386,6 @@
        </property>
        <property name="font">
         <font>
-         <weight>75</weight>
          <bold>true</bold>
          <underline>true</underline>
         </font>
@@ -3566,7 +3556,6 @@
        </property>
        <property name="font">
         <font>
-         <weight>75</weight>
          <bold>true</bold>
          <underline>true</underline>
         </font>
@@ -3586,7 +3575,6 @@
        </property>
        <property name="font">
         <font>
-         <weight>75</weight>
          <bold>true</bold>
          <underline>true</underline>
         </font>
@@ -3609,7 +3597,6 @@
        </property>
        <property name="font">
         <font>
-         <weight>50</weight>
          <bold>false</bold>
          <underline>false</underline>
         </font>
@@ -3709,7 +3696,6 @@
        </property>
        <property name="font">
         <font>
-         <weight>75</weight>
          <bold>true</bold>
          <underline>true</underline>
         </font>
@@ -3935,7 +3921,6 @@
      <property name="font">
       <font>
        <pointsize>18</pointsize>
-       <weight>75</weight>
        <bold>true</bold>
        <underline>true</underline>
       </font>
@@ -3993,7 +3978,6 @@
      </property>
      <property name="font">
       <font>
-       <weight>50</weight>
        <bold>false</bold>
       </font>
      </property>
@@ -4063,7 +4047,6 @@
      </property>
      <property name="font">
       <font>
-       <weight>50</weight>
        <bold>false</bold>
        <underline>false</underline>
        <strikeout>false</strikeout>

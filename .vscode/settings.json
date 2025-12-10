@@ -1,0 +1,22 @@
+{
+
+    "python.pythonPath": "C:\\PulssystemVirtUm310\\Scripts\\python.exe",
+    "python.terminal.activateEnvironment": true,
+
+    "python-envs.pythonProjects": [],
+    "python-envs.defaultEnvManager": "ms-python.python:system",
+
+
+    "terminal.integrated.profiles.windows": {
+        "Cmd mit venv": {
+            "path": "cmd.exe",
+            "args": ["/K", "C:\\PulssystemVirtUm310\\Scripts\\activate.bat"]
+        },
+        "PowerShell mit venv": {
+            "path": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
+            "args": ["-NoExit", "-Command", "C:\\PulssystemVirtUm310\\Scripts\\Activate.ps1"]
+        }
+    },
+
+    "terminal.integrated.defaultProfile.windows": "PowerShell mit venv"
+}
