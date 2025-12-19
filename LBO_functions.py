@@ -43,7 +43,7 @@ class WorkerLBO(QtCore.QObject):
         try:
             old_wl = 0
             while self.keep_running:
-                wl = np.round(self.wlm.GetWavelength(1), 6)
+                wl = np.round(self.wlm.GetWavelength(4), 6)
                 # This sleep timer is important, otherwise the WLM is overloaded
                 # when the ASE filter also measure the wavelength all the time:
                 time.sleep(0.1)

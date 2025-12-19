@@ -13,6 +13,7 @@ class DFB(QtCore.QObject):
     update_actTemp = QtCore.pyqtSignal(float)
     update_textBox = QtCore.pyqtSignal(str)
     update_wl_current = QtCore.pyqtSignal(tuple)
+    update_wl = QtCore.pyqtSignal(tuple)
     wl_stabil_status = QtCore.pyqtSignal(bool)
     update_target_wavelength = QtCore.pyqtSignal(float)
     send_signal_laserBusy = QtCore.pyqtSignal()
@@ -248,7 +249,7 @@ class DFB(QtCore.QObject):
     def control_wavelength(self, wlm, checkBox):
         """PID-Regelung für die Wellenlängenstabilisierung."""
         try:
-            wl = np.round(wlm.GetWavelength(1), 6)  # Aktuelle Wellenlänge messen
+            wl = np.round(wlm.GetWavelength(4), 6)  # Aktuelle Wellenlänge messen
             error = self.target_wavelength - wl  # Regelabweichung berechnen
 
             self.wl_history.append(wl)
@@ -289,13 +290,13 @@ class DFB(QtCore.QObject):
                         self.generate_signal()
                     return
 
-            if self.debug or ((1028 < wl < 1032) and (wl != self.old_wl)):
+            if self.debug or ((1029 < wl < 1033) and (wl != self.old_wl)):
                 self.integral += error * self.dt
                 derivative = (error - self.prev_error) / self.dt
                 correction = self.Kp * error + self.Ki * self.integral + self.Kd * derivative
 
                 new_current = np.round(self.current_set_current + correction, 5)  # Anpassung des Stroms
-                new_current = np.clip(new_current, 110, 130)
+                new_current = np.clip(new_current, 130, 152)
                 if not self.debug:
                     self.change_dfb_setCurrent(new_current)  # Neuen Strom setzen
                 self.current_set_current = new_current  # Speichere neuen Wert
@@ -327,7 +328,7 @@ class DFB(QtCore.QObject):
         if not self.debug:
             self.current_set_current = self.read_actual_current()
         else:
-            self.current_set_current = 125.0
+            self.current_set_current = 150.0
 
         self.wl_stabil_timer = QtCore.QTimer()
         self.wl_stabil_timer.timeout.connect(lambda: self.control_wavelength(wlm=wlm, checkBox=checkBox))

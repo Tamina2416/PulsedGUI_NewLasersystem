@@ -7,7 +7,10 @@ need some more work.
 import argparse
 import ctypes, os, sys, random, time
 
+
 class WavelengthMeter:
+    
+   
 
     def __init__(self, dllpath="C:\Windows\System32\wlmData.dll", debug=False):
         """
@@ -57,6 +60,7 @@ class WavelengthMeter:
             "frequency": self.GetFrequency(),
             "exposureMode": self.GetExposureMode()
         }
+    
 
     @property
     def wavelengths(self):
@@ -64,7 +68,8 @@ class WavelengthMeter:
 
     @property
     def wavelength(self):
-        return self.GetWavelength(1)
+        #return self.GetWavelength(1)
+        return self.GetWavelength(4)
 
     @property
     def switcher_mode(self):

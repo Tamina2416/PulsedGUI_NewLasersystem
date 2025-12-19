@@ -111,7 +111,7 @@ class ASE(QtCore.QObject):
         - If an error occurs, attempts to close the stage and emits fail-safe signals.
         """
         try:
-            wl = np.round(wlm.GetWavelength(1), 6)
+            wl = np.round(wlm.GetWavelength(4), 6)
             self.stage.calmode = self.stage.change_angle(wl, self.stage.calmode, self.cal_par)
             pos = self.stage.to_degree(self.stage.get_position())
 
@@ -228,7 +228,7 @@ class ASE(QtCore.QObject):
         os.makedirs(folderpath_lowtohi, exist_ok=True)
         os.makedirs(folderpath_hitolow, exist_ok=True)
 
-        temp_wavelength = str(np.round(wlm.GetWavelength(1), 2)).replace('.', ',')
+        temp_wavelength = str(np.round(wlm.GetWavelength(4), 2)).replace('.', ',')
 
         self.cal_folderpath = folderpath_lowtohi if lowtohi else folderpath_hitolow
         direction = 'lowtohi' if lowtohi else 'hitolow'
@@ -304,7 +304,7 @@ class ASE(QtCore.QObject):
             power = powermeter.get_power()
             cal_actual_time = np.round(
                 time.time()-self.cal_old_time, decimals=4)
-            cal_wavelength = np.round(wlm.GetWavelength(1), 6)
+            cal_wavelength = np.round(wlm.GetWavelength(4), 6)
             cal_current_angle = self.stage.to_degree(self.stage.get_position())
 
             csv.writer(f, delimiter=';').writerow(

@@ -13,6 +13,7 @@ import numpy as np
 from datetime import datetime
 
 
+
 class MainWindow(QtWidgets.QMainWindow):
     update_textBox = QtCore.pyqtSignal(str)
     measurement_status = QtCore.pyqtSignal(bool)
@@ -56,6 +57,9 @@ class MainWindow(QtWidgets.QMainWindow):
         self.dfb.widescan_status.connect(self.status_checkBox_wideScan.setChecked)
         self.dfb.widescan_status.connect(lambda bool:
                                          self.status_label_wideScan.setText("T[°C] =") if not bool else None)
+        
+        #self.label_currentWL_Status.setText(f"= {self.data_wl}") # test show WL
+        
         self.dfb.widescan_status.connect(lambda bool: self.disable_tab_widgets(
             "DFB_tab", bool, excluded_widget=self.dfb_button_abortScan))
         self.dfb.update_values.connect(lambda values: self.dfb_update_values(*values))
@@ -74,6 +78,7 @@ class MainWindow(QtWidgets.QMainWindow):
                              self.dfb_button_fakeExtraction]))
         self.dfb.update_wl_current.connect(lambda values: (
             self.dfb_label_currentWL.setText(f"Wavelength IR: {values[0]}"),
+            self.label_currentWL_Status.setText(f"Wavelength IR: {values[0]}"),
             self.dfb_label_currentWL_uv.setText(f"Wavelength UV: {values[0] / 4}"),
             self.dfb_label_injectionCurrent.setText(f"Injection Current: {values[1]}")
             ))
