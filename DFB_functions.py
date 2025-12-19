@@ -294,7 +294,10 @@ class DFB(QtCore.QObject):
                     else:
                         current_temperature = 20.0
                     self.update_textBox.emit(f"Aktuelle Temp: {current_temperature}")
+
                     new_temp = np.round(current_temperature + temperature_step, 2)
+                    new_temp = np.clip(new_temp, 8, 52)    # min and max possible DFB temperatures
+                    
                     if not self.debug:
                         self.change_dfb_setTemp(set_temp=new_temp)
                     self.update_textBox.emit(f"Neue Temp: {new_temp}")
@@ -310,7 +313,8 @@ class DFB(QtCore.QObject):
                 correction = self.Kp * error + self.Ki * self.integral + self.Kd * derivative
 
                 new_current = np.round(self.current_set_current + correction, 5)  # Anpassung des Stroms
-                new_current = np.clip(new_current, 130, 152)
+                new_current = np.clip(new_current, 130, 152)   # Begrenzung Strom
+                
                 if not self.debug:
                     self.change_dfb_setCurrent(new_current)  # Neuen Strom setzen
                 self.current_set_current = new_current  # Speichere neuen Wert
