@@ -3,7 +3,7 @@ from toptica.lasersdk.client import UnavailableError
 from toptica.lasersdk.decop import DecopError
 import numpy as np
 from PyQt6 import QtCore, QtTest
-
+from PyQt6.QtCore import QTimer
 
 class DFB(QtCore.QObject):
     widescan_status = QtCore.pyqtSignal(bool)
@@ -13,7 +13,7 @@ class DFB(QtCore.QObject):
     update_actTemp = QtCore.pyqtSignal(float)
     update_textBox = QtCore.pyqtSignal(str)
     update_wl_current = QtCore.pyqtSignal(tuple)
-    update_wl = QtCore.pyqtSignal(tuple)
+    update_wl = QtCore.pyqtSignal(float)
     wl_stabil_status = QtCore.pyqtSignal(bool)
     update_target_wavelength = QtCore.pyqtSignal(float)
     send_signal_laserBusy = QtCore.pyqtSignal()
@@ -45,6 +45,20 @@ class DFB(QtCore.QObject):
         # Regelgrößen
         self.integral = 0
         self.prev_error = 0
+
+    # Update Status wavelength
+    def update_value_wl(self, wlm):
+        """emits signal for wavelength status"""
+        self.update_wl.emit(np.round(wlm.GetWavelength(4), 5))
+
+    def start_update_wl(self, wlm):
+        """
+        Timer for wavelength status: each s value update
+        """
+        self.wl_timer = QtCore.QTimer(self)
+        self.wl_timer.timeout.connect(lambda: self.update_value_wl(wlm))
+        self.wl_timer.start(1000)
+
 
     def connect_dfb(self, ip):
         """Connects/disconnects the DFB laser depending on if the connect button

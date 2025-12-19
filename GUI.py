@@ -53,13 +53,14 @@ class MainWindow(QtWidgets.QMainWindow):
         self.data_lbo_act = 0.0
         self.data_lbo_set = 0.0
 
+        # Status wavelength
+        self.dfb.start_update_wl(wlm)
+        self.dfb.update_wl.connect(lambda value: self.label_currentWL_Status.setText(f"= {value}")) 
+
         # Signal/Slot connection for DFB tab:
         self.dfb.widescan_status.connect(self.status_checkBox_wideScan.setChecked)
         self.dfb.widescan_status.connect(lambda bool:
                                          self.status_label_wideScan.setText("T[°C] =") if not bool else None)
-        
-        #self.label_currentWL_Status.setText(f"= {self.data_wl}") # test show WL
-        
         self.dfb.widescan_status.connect(lambda bool: self.disable_tab_widgets(
             "DFB_tab", bool, excluded_widget=self.dfb_button_abortScan))
         self.dfb.update_values.connect(lambda values: self.dfb_update_values(*values))
@@ -78,7 +79,6 @@ class MainWindow(QtWidgets.QMainWindow):
                              self.dfb_button_fakeExtraction]))
         self.dfb.update_wl_current.connect(lambda values: (
             self.dfb_label_currentWL.setText(f"Wavelength IR: {values[0]}"),
-            self.label_currentWL_Status.setText(f"Wavelength IR: {values[0]}"),
             self.dfb_label_currentWL_uv.setText(f"Wavelength UV: {values[0] / 4}"),
             self.dfb_label_injectionCurrent.setText(f"Injection Current: {values[1]}")
             ))
@@ -481,7 +481,8 @@ class MainWindow(QtWidgets.QMainWindow):
             except AttributeError:
                 data_pm2 = 0.0
         if self.general_checkbox_saveWL.isChecked():
-            data_wl = self.data_wl
+            #data_wl = self.data_wl     # old version from Bene, somehow didnt work
+            data_wl = np.round(self.wlm.GetWavelength(4),6)
         if self.general_checkbox_saveMotorSteps.isChecked():
             data_steps_front = self.data_steps_front
             data_steps_back = self.data_steps_back
