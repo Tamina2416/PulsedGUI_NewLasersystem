@@ -287,7 +287,7 @@ class DFB(QtCore.QObject):
             # PID-Berechnung
             if not self.temp_step:
                 self.temp_step = True
-                if abs(error) > 0.001:
+                if abs(error) > 0.001 and ((1029 < wl < 1033) and (wl != self.old_wl)):
                     temperature_step = error * 9.33
                     if not self.debug:
                         current_temperature = self.read_actual_dfb_values()[0]
@@ -297,7 +297,7 @@ class DFB(QtCore.QObject):
 
                     new_temp = np.round(current_temperature + temperature_step, 2)
                     new_temp = np.clip(new_temp, 8, 52)    # min and max possible DFB temperatures
-                    
+
                     if not self.debug:
                         self.change_dfb_setTemp(set_temp=new_temp)
                     self.update_textBox.emit(f"Neue Temp: {new_temp}")
